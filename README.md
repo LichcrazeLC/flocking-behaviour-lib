@@ -22,5 +22,16 @@ def flock(rock_group, pos, vel):
 return normalizeVector([cohesion_vector[0] * cohesion_vector_weight + alignment_vector[0] * alignment_vector_weight + separation_vector[0] * avoidance_vector_weight + vel[0], cohesion_vector[1] * cohesion_vector_weight + alignment_vector[1] * alignment_vector_weight + separation_vector[1] * avoidance_vector_weight + vel[1]])
 ```
 
+There's also an attack() method that has nothing to do with flocking behaviour, but returns a velocity vector which aggressively targets one particular point.
+
+```python
+def attack(my_ship, pos, vel):
+    if dist(pos, my_ship.get_pos()) < 200:      
+        vec = normalizeVector([my_ship.get_pos()[0] - pos[0], my_ship.get_pos()[1] - pos[1]])
+        return [vec[0] * 2, vec[1] * 2]
+    else:
+        return False
+```
+
 ## Contributing
 We've already been through this.
